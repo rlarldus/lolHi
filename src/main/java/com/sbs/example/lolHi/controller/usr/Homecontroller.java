@@ -11,11 +11,13 @@ public class Homecontroller {
 	public String showMain() {
 		return "안녕";
 	}
+
 	@RequestMapping("/usr/home/main2")
 	@ResponseBody
 	public String showMain2() {
 		return "잘가";
 	}
+
 	@RequestMapping("/usr/home/main3")
 	@ResponseBody
 	public String showMain3() {
@@ -27,6 +29,28 @@ public class Homecontroller {
 	@ResponseBody
 	public int showPlus(int a, int b) {
 		return a + b;
+
+	}
+
+	// /usr/home/minus?a=10&b=20
+	@RequestMapping("/usr/home/minus")
+	@ResponseBody
+	public int showMinus(int a, int b) {
+		return a - b;
+
+	}
+	// /usr/home/multiply?a=10&b=20
+	@RequestMapping("/usr/home/multiply")
+	@ResponseBody
+	public int showMultiply(int a, int b) {
+		return a * b;
+
+	}
+	// /usr/home/division?a=10&b=20
+	@RequestMapping("/usr/home/division")
+	@ResponseBody
+	public int showdivision(int a, int b) {
+		return a / b;
 
 	}
 }
