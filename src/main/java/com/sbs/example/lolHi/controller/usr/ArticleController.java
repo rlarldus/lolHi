@@ -1,6 +1,5 @@
 package com.sbs.example.lolHi.controller.usr;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,19 @@ public class ArticleController {
 
 	String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
-		
+
 		model.addAttribute("articles", articles);
-		
+
 		return "usr/article/list";
 	}
+	@RequestMapping("/usr/article/detail")
+	
+	String showDetail(Model model, int id) {
+		Article article = articleService.getArticleById(id);
+		model.addAttribute("article", article);
+		
+		return "usr/article/detail";
+	}
+
 }
+

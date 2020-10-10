@@ -1,6 +1,5 @@
 package com.sbs.example.lolHi.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,4 +17,7 @@ public class ArticleService {
 		return articleDao.getArticles();
 	}
 
+	public Article getArticleById(int id) {
+		return articleDao.getArticleById(id);
+	}
 }
