@@ -19,8 +19,8 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("/usr/article/list")
-	public String showList(Model model) {
-		List<Article> articles = articleService.getArticles();
+	public String showList(Model model, @RequestParam Map<String, Object> param) {
+		List<Article> articles = articleService.getArticles(param);
 
 		model.addAttribute("articles", articles);
 
@@ -43,35 +43,34 @@ public class ArticleController {
 
 		return String.format("<script> alert('%d번 글을 삭제하였습니다.'); location.replace('/usr/article/list'); </script>", id);
 	}
-
+	
 	@RequestMapping("/usr/article/modify")
 	public String showModify(Model model, int id) {
 		Article article = articleService.getArticleById(id);
+
 		model.addAttribute("article", article);
+		
 		return "usr/article/modify";
 	}
-
+	
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public String doModify(int id, String title, String body) {
 		articleService.modifyArticle(id, title, body);
 
-		return String.format(
-				"<script> alert('%d번 글을 수정하였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
+		return String.format("<script> alert('%d번 글을 수정하였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
 	}
-
+	
 	@RequestMapping("/usr/article/write")
 	public String showWrite() {
 		return "usr/article/write";
 	}
-
+	
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
 	public String doWrite(@RequestParam Map<String, Object> param) {
 		int id = articleService.writeArticle(param);
 
-		return String.format(
-				"<script> alert('%d번 글이 생성되였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
+		return String.format("<script> alert('%d번 글이 생성되였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
 	}
-
 }

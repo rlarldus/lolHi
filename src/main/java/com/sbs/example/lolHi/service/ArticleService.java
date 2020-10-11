@@ -15,8 +15,26 @@ public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 
-	public List<Article> getArticles() {
-		return articleDao.getArticles();
+	public List<Article> getArticles(Map<String, Object> param) {
+		int page = Util.getAsInt(param.get("page"), 1);
+
+		// 한 리스트에 나올 수 있는 게시물 게수
+		int itemsCountInAPage = Util.getAsInt(param.get("itemsCountInAPage"), 10);
+		
+		if ( itemsCountInAPage > 100 ) {
+			itemsCountInAPage = 100;
+		}
+		else if ( itemsCountInAPage < 1 ) {
+			itemsCountInAPage = 1;
+		}
+
+		int limitFrom = (page - 1) * itemsCountInAPage;
+		int limitTake = itemsCountInAPage;
+
+		param.put("limitFrom", limitFrom);
+		param.put("limitTake", limitTake);
+
+		return articleDao.getArticles(param);
 	}
 
 	public Article getArticleById(int id) {
@@ -25,7 +43,6 @@ public class ArticleService {
 
 	public void deleteArticleById(int id) {
 		articleDao.deleteArticleById(id);
-
 	}
 
 	public void modifyArticle(int id, String title, String body) {
@@ -39,4 +56,5 @@ public class ArticleService {
 
 		return id;
 	}
+
 }
