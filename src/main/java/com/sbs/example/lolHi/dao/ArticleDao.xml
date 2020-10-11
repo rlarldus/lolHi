@@ -13,7 +13,7 @@
 		FROM article
 		WHERE id = #{id}
 	</select>
-	
+
 	<delete id="deleteArticleById">
 		DELETE FROM article
 		WHERE id = #{id}
@@ -32,5 +32,19 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+
+	<insert id="writeArticle" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO article
+		<set>
+			regDate = NOW(),
+			updateDate = NOW(),
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="body != null">
+				`body` = #{body},
+			</if>
+		</set>
+	</insert>
 
 </mapper>
