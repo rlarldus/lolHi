@@ -31,6 +31,13 @@
 	<div>
 		<a href="write">글쓰기</a>
 	</div>
+	
+	<h2>페이지</h2>
+	<div>
+		<c:forEach var="i" begin="1" end="${totalPage}">
+			<a href="?page=${i}">${i}</a>
+		</c:forEach>
+	</div>
 
 </body>
 </html>
