@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.example.lolHi.dto.Article;
 import com.sbs.example.lolHi.service.ArticleService;
+import com.sbs.example.lolHi.util.Util;
 
 @Controller
 public class ArticleController {
@@ -23,14 +24,27 @@ public class ArticleController {
 		
 		int totalCount = articleService.getTotalCount();
 		int itemsCountInAPage = 10;
-		System.out.println("totalCount : " + totalCount);
-		int totalPage = (int)Math.ceil(totalCount / (double)itemsCountInAPage);
-
+		
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+		int pageMenuArmSize = 10;
+		int page = Util.getAsInt(param.get("page"), 1);
+		int pageMenuStart = page - pageMenuArmSize;
+		if (pageMenuStart < 1) {
+			pageMenuStart = 1;
+		}
+		int pageMenuEnd = page + pageMenuArmSize;
+		if (pageMenuEnd > totalPage) {
+			pageMenuEnd = totalPage;
+		}
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		List<Article> articles = articleService.getArticles(param);
 
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
+		model.addAttribute("pageMenuStart", pageMenuStart);
+		model.addAttribute("pageMenuEnd", pageMenuEnd);
+		model.addAttribute("page", page);
 		model.addAttribute("articles", articles);
 
 		return "usr/article/list";
@@ -44,14 +58,7 @@ public class ArticleController {
 
 		return "usr/article/detail";
 	}
-	@RequestMapping("/usr/article/detail2")
-	@ResponseBody
-	public Article showDetail2(Model model, int id) {
-		Article article = articleService.getArticleById(id);
-
-		return article;
-	}
-
+	
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
@@ -74,7 +81,8 @@ public class ArticleController {
 	public String doModify(int id, String title, String body) {
 		articleService.modifyArticle(id, title, body);
 
-		return String.format("<script> alert('%d번 글을 수정하였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
+		return String.format(
+				"<script> alert('%d번 글을 수정하였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
 	}
 	
 	@RequestMapping("/usr/article/write")
@@ -87,6 +95,7 @@ public class ArticleController {
 	public String doWrite(@RequestParam Map<String, Object> param) {
 		int id = articleService.writeArticle(param);
 
-		return String.format("<script> alert('%d번 글이 생성되였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
+		return String.format(
+				"<script> alert('%d번 글이 생성되였습니다.'); location.replace('/usr/article/detail?id=%d'); </script>", id, id);
 	}
 }
