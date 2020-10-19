@@ -33,3 +33,12 @@ CREATE TABLE `member` (
     loginPw CHAR(100) NOT NULL,
     `name` CHAR(100) NOT NULL
 ); 
+# 회원 테이블 생성
+CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    loginId CHAR(20) NOT NULL,
+    loginPw CHAR(100) NOT NULL,
+    `name` CHAR(100) NOT NULL
+);

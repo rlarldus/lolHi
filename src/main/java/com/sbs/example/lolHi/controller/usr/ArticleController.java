@@ -25,7 +25,7 @@ public class ArticleController {
 		int totalCount = articleService.getTotalCount();
 		int itemsCountInAPage = 10;
 		
-		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
+		int totalPage = (int)Math.ceil(totalCount / (double)itemsCountInAPage);
 		int pageMenuArmSize = 10;
 		int page = Util.getAsInt(param.get("page"), 1);
 		int pageMenuStart = page - pageMenuArmSize;
