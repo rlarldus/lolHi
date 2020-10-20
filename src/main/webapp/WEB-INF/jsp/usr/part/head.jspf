@@ -13,7 +13,7 @@
 
 	<div>
 		<c:if test="${sessionScope.loginedMemberId > 0}">
-		<a href="/usr/article/write">글쓰기</a>
+			<a href="/usr/article/write">글쓰기</a>
 			<a href="/usr/member/doLogout">로그아웃</a>
 		</c:if>
 
@@ -22,4 +22,4 @@
 		</c:if>
 
 		<a href="/usr/article/list">글리스트</a>
-	</div> 
+	</div>

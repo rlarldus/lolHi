@@ -288,3 +288,6 @@
 |1  |2020-10-19 18:54:00 |2020-10-19 18:54:00 |제목1   |내용1  |
 |---|--------------------|--------------------|------|-----|
 
+2020-10-20 18:59:51 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-20 18:59:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-10-20 18:59:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
