@@ -3,6 +3,7 @@ package com.sbs.example.lolHi.controller.usr;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,21 +61,20 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(HttpSession session, int id, Model model) {
-		int loginedMemberId = 0;
+	public String doDelete(HttpServletRequest req, int id, Model model) {
+		boolean isLogined = (boolean) req.getAttribute("isLogined");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-
-		if (loginedMemberId == 0) {
+		if (isLogined == false) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
+
 		Article article = articleService.getArticleById(id);
+
 		if (article.getMemberId() != loginedMemberId) {
-			model.addAttribute("msg"," 권한이 없습니다.");
+			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
@@ -101,11 +101,13 @@ public class ArticleController {
 		}
 
 		Article article = articleService.getArticleById(id);
+
 		if (article.getMemberId() != loginedMemberId) {
-			model.addAttribute("msg"," 권한이 없습니다.");
+			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
+
 		model.addAttribute("article", article);
 
 		return "usr/article/modify";
@@ -125,9 +127,11 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
+
 		Article article = articleService.getArticleById(id);
+
 		if (article.getMemberId() != loginedMemberId) {
-			model.addAttribute("msg"," 권한이 없습니다.");
+			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
