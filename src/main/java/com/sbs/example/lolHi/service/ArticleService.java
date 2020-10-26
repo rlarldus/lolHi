@@ -37,8 +37,8 @@ public class ArticleService {
 		return articleDao.getArticles(param);
 	}
 
-	public Article getArticleById(int id) {
-		return articleDao.getArticleById(id);
+	public Article getForPrintArticleById(int id) {
+		return articleDao.getForPrintArticleById(id);
 	}
 
 	public void deleteArticleById(int id) {
@@ -56,6 +56,7 @@ public class ArticleService {
 
 		return id;
 	}
+
 	public int getTotalCount() {
 		return articleDao.getTotalCount();
 	}

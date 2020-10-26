@@ -12,11 +12,12 @@ import com.sbs.example.lolHi.dto.Article;
 public interface ArticleDao {
 	List<Article> getArticles(Map<String, Object> param);
 
-	Article getArticleById(@Param("id") int id);
+	Article getForPrintArticleById(@Param("id") int id);
 
 	void deleteArticleById(@Param("id") int id);
 	void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
 	void writeArticle(Map<String, Object> param);
+
 	int getTotalCount();
 }
