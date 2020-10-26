@@ -38,7 +38,7 @@ public class ArticleController {
 		}
 
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		List<Article> articles = articleService.getArticles(param);
+		List<Article> articles = articleService.getForPrintArticles(param);
 
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);

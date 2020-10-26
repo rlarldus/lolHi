@@ -7994,3 +7994,118 @@ Identify and stop the process that's listening on port 8085 or configure this ap
 2020-10-26 19:51:24 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.453 seconds (JVM running for 573.315)
 2020-10-26 19:51:24 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
 2020-10-26 19:51:35 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:51:35 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on DESKTOP-S799PEG with PID 3208 (C:\work\sts-4.8.0.RELEASE-workspace\lolHi\target\classes started by user in C:\work\sts-4.8.0.RELEASE-workspace\lolHi)
+2020-10-26 19:51:35 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-26 19:51:35 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-26 19:51:35 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:51:35 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-26 19:51:35 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-26 19:51:35 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-26 19:51:35 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-26 19:51:35 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 206 ms
+2020-10-26 19:51:35 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:51:35 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-26 19:51:35 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:51:35 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-26 19:51:35 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.361 seconds (JVM running for 584.229)
+2020-10-26 19:51:35 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-26 19:51:55 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-26 19:51:55 [INFO ] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-10-26 19:51:55 [INFO ] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2020-10-26 19:51:55 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2020-10-26 19:51:55 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2020-10-26 19:51:55 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT *
+		FROM member
+		WHERE id = 2
+ {executed in 1 msec}
+2020-10-26 19:51:55 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|--------|--------|------|
+|id |regdate             |updatedate          |loginid |loginpw |name  |
+|---|--------------------|--------------------|--------|--------|------|
+|2  |2020-10-26 19:42:58 |2020-10-26 19:49:03 |test2   |test2   |홍길순22 |
+|---|--------------------|--------------------|--------|--------|------|
+
+2020-10-26 19:51:55 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT COUNT(*)
+		FROM
+		article
+ {executed in 3 msec}
+2020-10-26 19:51:55 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|3        |
+|---------|
+
+2020-10-26 19:51:55 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT A.*,
+		M.name AS extra__writer
+		FROM article AS A
+		INNER JOIN member
+		AS M
+		ON A.memberId = M.id
+		ORDER BY A.id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-26 19:51:55 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|--------|----------|--------------|
+|id |regdate             |updatedate          |memberid |title   |body      |extra__writer |
+|---|--------------------|--------------------|---------|--------|----------|--------------|
+|3  |2020-10-26 19:44:42 |2020-10-26 19:44:45 |3        |sdfsd22 |fdsfdsf22 |홍길동           |
+|2  |2020-10-26 19:42:58 |2020-10-26 19:42:58 |1        |제목2     |내용2       |홍길동           |
+|1  |2020-10-26 19:42:58 |2020-10-26 19:42:58 |1        |제목1     |내용1       |홍길동           |
+|---|--------------------|--------------------|---------|--------|----------|--------------|
+
+2020-10-26 19:53:07 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:07 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2020-10-26 19:53:07 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2020-10-26 19:53:07 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on DESKTOP-S799PEG with PID 3208 (C:\work\sts-4.8.0.RELEASE-workspace\lolHi\target\classes started by user in C:\work\sts-4.8.0.RELEASE-workspace\lolHi)
+2020-10-26 19:53:07 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-26 19:53:08 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-26 19:53:08 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:08 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-26 19:53:08 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-26 19:53:08 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-26 19:53:08 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-26 19:53:08 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 259 ms
+2020-10-26 19:53:08 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:08 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-26 19:53:08 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:08 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-26 19:53:08 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.424 seconds (JVM running for 676.764)
+2020-10-26 19:53:08 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-26 19:53:20 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:20 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on DESKTOP-S799PEG with PID 3208 (C:\work\sts-4.8.0.RELEASE-workspace\lolHi\target\classes started by user in C:\work\sts-4.8.0.RELEASE-workspace\lolHi)
+2020-10-26 19:53:20 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-26 19:53:21 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-26 19:53:21 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:21 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-26 19:53:21 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-26 19:53:21 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-26 19:53:21 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-26 19:53:21 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 224 ms
+2020-10-26 19:53:21 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:21 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-26 19:53:21 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:21 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-26 19:53:21 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.39 seconds (JVM running for 689.735)
+2020-10-26 19:53:21 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-26 19:53:31 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:31 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on DESKTOP-S799PEG with PID 3208 (C:\work\sts-4.8.0.RELEASE-workspace\lolHi\target\classes started by user in C:\work\sts-4.8.0.RELEASE-workspace\lolHi)
+2020-10-26 19:53:31 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-26 19:53:32 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-26 19:53:32 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:32 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-26 19:53:32 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-26 19:53:32 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-26 19:53:32 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-26 19:53:32 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 216 ms
+2020-10-26 19:53:32 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-26 19:53:32 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-26 19:53:32 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-26 19:53:32 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-26 19:53:32 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.377 seconds (JVM running for 700.683)
+2020-10-26 19:53:32 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-26 19:53:46 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
