@@ -58,6 +58,19 @@ loginId = 'test2',
 loginPw = 'test2',
 `name` = '홍길순';
 
+# 댓글 테이블 생성
+CREATE TABLE reply (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `body` TEXT NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    relId INT(10) UNSIGNED NOT NULL, # 관련 데이터 ID
+    relTypeCode CHAR(50) NOT NULL # 관련 데이터 타입
+);
+
+SELECT * FROM reply; 
+
 # 게시물 테이블에 memberId 칼럼 추가
 ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
 # 기존 게시물들의 작성자는 1번 회원으로 정한다.
