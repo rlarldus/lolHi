@@ -109,3 +109,24 @@ ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDa
 UPDATE article SET memberId = 1 WHERE memberId = 0;
 
 SELECT * FROM article;
+
+# 게시판 테이블 추가
+CREATE TABLE board (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `name` CHAR(20) UNIQUE NOT NULL,
+    `code` CHAR(20) UNIQUE NOT NULL
+);
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = '공지사항',
+`code` = 'notice';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = '자유',
+`code` = 'free'; 
