@@ -37,13 +37,18 @@ public class ArticleService {
 		param.put("limitTake", limitTake);
 
 		List<Article> articles = articleDao.getForPrintArticles(param);
-
-		for ( Article article : articles ) {
-			if ( article.getExtra() == null ) {
-				article.setExtra(new HashMap<>()); 
+		for (Article article : articles) {
+			if (article.getExtra() == null) {
+				article.setExtra(new HashMap<>());
 			}
 
-			boolean actorCanDelete = actorMember.getId() == article.getMemberId();
+			boolean actorCanDelete = false;
+
+			if (actorMember != null) {
+				actorCanDelete = actorMember.getId() == article.getMemberId();
+			}
+
+
 			boolean actorCanModify = actorCanDelete;
 
 			article.getExtra().put("actorCanDelete", actorCanDelete);
@@ -56,11 +61,16 @@ public class ArticleService {
 	public Article getForPrintArticleById(Member actorMember, int id) {
 		Article article = articleDao.getForPrintArticleById(id);
 
-		if ( article.getExtra() == null ) {
-			article.setExtra(new HashMap<>()); 
+		if (article.getExtra() == null) {
+			article.setExtra(new HashMap<>());
 		}
 
-		boolean actorCanDelete = actorMember.getId() == article.getMemberId();
+		boolean actorCanDelete = false;
+
+		if (actorMember != null) {
+			actorCanDelete = actorMember.getId() == article.getMemberId();
+		}
+
 		boolean actorCanModify = actorCanDelete;
 
 		article.getExtra().put("actorCanDelete", actorCanDelete);
