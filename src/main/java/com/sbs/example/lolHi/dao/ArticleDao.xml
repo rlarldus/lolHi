@@ -75,6 +75,12 @@
 			</if>
 		</set>
 	</insert>
+	
+	<select id="getBoardByCode" resultType="Board">
+		SELECT *
+		FROM board
+		WHERE code = #{boardCode}
+	</select>
 
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
