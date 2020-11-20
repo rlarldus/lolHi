@@ -55,6 +55,7 @@ public class MemberService {
 		Member member = memberDao.getMemberByNameAndEmail(name, email);
 
 		return member == null;
+
 	}
 
 }
