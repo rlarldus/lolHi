@@ -10,7 +10,6 @@
 			alert('처리중입니다.');
 			return;
 		}
-
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
@@ -35,7 +34,12 @@
 			form.name.focus();
 			return;
 		}
-	}
+		form.email.value = form.email.value.trim();
+		if (form.email.value.length == 0) {
+			alert('이메일을 입력해주세요.');
+			form.email.focus();
+			return;
+		}
 		form.submit();
 		joinFormSubmitDone = true;
 	}
@@ -59,7 +63,11 @@
 			name="name" />
 	</div>
 	<div>
+		이메일 : <input type="email" maxlength="50" placeholder="이메일을 입력해주세요."
+			name="email" />
+	</div>
+	<div>
 		가입 : <input type="submit" value="가입" />
 	</div>
 </form>
-<%@ include file="../part/foot.jspf"%> 
+<%@ include file="../part/foot.jspf"%>
