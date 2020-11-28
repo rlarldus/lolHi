@@ -3,6 +3,7 @@ package com.sbs.example.lolHi.service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,26 +21,29 @@ public class MemberService {
 
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
-	
+
 	@Value("${custom.siteLoginUri}")
 	private String siteLoginUri;
-	
+
 	@Autowired
 	private MemberDao memberDao;
-	
+
 	@Autowired
 	private MailService mailService;
+
+	@Autowired
+	private AttrService attrService;
 
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
 
 		int id = Util.getAsInt(param.get("id"));
-		
+
 		sendJoinCompleteMail((String) param.get("email"));
 
 		return id;
 	}
-	
+
 	private void sendJoinCompleteMail(String email) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
@@ -79,16 +83,16 @@ public class MemberService {
 		if (email == null || email.length() == 0) {
 			return false;
 		}
-		
+
 		Member member = memberDao.getMemberByNameAndEmail(name, email);
 
 		return member == null;
-
 	}
+
 	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberDao.getMemberByNameAndEmail(name, email);
 	}
-	
+
 	public ResultData setTempPasswordAndNotify(Member member) {
 		Random r = new Random();
 		String tempLoginPw = (10000 + r.nextInt(90000)) + "";
@@ -115,5 +119,20 @@ public class MemberService {
 		return new ResultData("S-1", "임시 패스워드를 메일로 발송하였습니다.");
 	}
 
+	public String genCheckLoginPwAuthCode(int actorId) {
+		String authCode = UUID.randomUUID().toString();
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode,
+				Util.getDateStrLater(60 * 60));
 
+		return authCode;
+	}
+
+	public ResultData checkValidCheckLoginPwAuthCode(int actorId, String checkLoginPwAuthCode) {
+		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode")
+				.equals(checkLoginPwAuthCode)) {
+			return new ResultData("S-1", "유효한 키 입니다.");
+		}
+
+		return new ResultData("F-1", "유효하지 않은 키 입니다.");
+	}
 }
