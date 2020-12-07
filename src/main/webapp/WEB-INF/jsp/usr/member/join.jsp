@@ -13,38 +13,55 @@
 			alert('처리중입니다.');
 			return;
 		}
+
 		form.loginId.value = form.loginId.value.trim();
+
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
 			form.loginId.focus();
+
 			return;
 		}
+
 		form.loginPw.value = form.loginPw.value.trim();
+
 		if (form.loginPw.value.length == 0) {
 			alert('로그인 비번을 입력해주세요.');
 			form.loginPw.focus();
+
 			return;
 		}
+
 		form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
+
 		if (form.loginPw.value != form.loginPwConfirm.value) {
 			alert('로그인 비번 확인이 일치하지 않습니다.');
 			form.loginPwConfirm.focus();
+
 			return;
 		}
+
 		form.name.value = form.name.value.trim();
+
 		if (form.name.value.length == 0) {
 			alert('이름을 입력해주세요.');
 			form.name.focus();
+
 			return;
 		}
+
 		form.email.value = form.email.value.trim();
+
 		if (form.email.value.length == 0) {
 			alert('이메일을 입력해주세요.');
 			form.email.focus();
+
 			return;
 		}
+
 		form.loginPw.value = sha256(form.loginPw.value);
 		form.loginPwConfirm.value = '';
+
 		form.submit();
 		joinFormSubmitDone = true;
 	}

@@ -13,13 +13,18 @@
 			alert('처리중입니다.');
 			return;
 		}
+
 		form.loginPw.value = form.loginPw.value.trim();
+
 		if (form.loginPw.value.length == 0) {
 			alert('로그인 비번을 입력해주세요.');
 			form.loginPw.focus();
+
 			return;
 		}
+
 		form.loginPw.value = sha256(form.loginPw.value);
+
 		form.submit();
 		checkLoginPwFormSubmitDone = true;
 	}
@@ -35,4 +40,4 @@
 		비밀번호 확인 : <input type="submit" value="비밀번호 확인" />
 	</div>
 </form>
-<%@ include file="../part/foot.jspf"%> 
+<%@ include file="../part/foot.jspf"%>

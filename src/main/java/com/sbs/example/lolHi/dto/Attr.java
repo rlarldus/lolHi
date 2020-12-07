@@ -17,4 +17,4 @@ public class Attr {
 	private String typeCode;
 	private String type2Code;
 	private String value;
-} 
+}

@@ -4,4 +4,4 @@
 <c:set var="title" value="메인" />
 <%@ include file="../part/head.jspf"%>
 
-<%@ include file="../part/foot.jspf"%> 
+<%@ include file="../part/foot.jspf"%>

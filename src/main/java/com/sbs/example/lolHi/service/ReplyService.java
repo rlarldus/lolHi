@@ -24,6 +24,7 @@ public class ReplyService {
 
 		return id;
 	}
+
 	public List<Reply> getForPrintReplies(Member actorMember, String relTypeCode, int relId) {
 		List<Reply> replies = replyDao.getForPrintReplies(relTypeCode, relId);
 
@@ -46,6 +47,7 @@ public class ReplyService {
 
 		return replies;
 	}
+
 	public Reply getReply(int id) {
 		return replyDao.getReply(id);
 	}
@@ -53,9 +55,11 @@ public class ReplyService {
 	public void deleteReplyById(int id) {
 		replyDao.deleteReplyById(id);
 	}
+
 	public void modify(Map<String, Object> param) {
 		replyDao.modify(param);
 	}
+
 	public Reply getForPrintReply(Member actorMember, int id) {
 		Reply reply = getReply(id);
 
@@ -80,8 +84,5 @@ public class ReplyService {
 
 		return reply;
 	}
-
-
-	
 
 }

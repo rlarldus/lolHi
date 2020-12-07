@@ -45,7 +45,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 		}
 
 		String encodedCurrentUri = Util.getUriEncoded(currentUri);
-
+		
 		request.setAttribute("currentUri", currentUri);
 		request.setAttribute("encodedCurrentUri", encodedCurrentUri);
 

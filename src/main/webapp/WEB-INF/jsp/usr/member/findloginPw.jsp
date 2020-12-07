@@ -10,18 +10,25 @@
 			alert('처리중입니다.');
 			return;
 		}
+
 		form.loginId.value = form.loginId.value.trim();
+
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
 			form.loginId.focus();
+
 			return;
 		}
+
 		form.email.value = form.email.value.trim();
+
 		if (form.email.value.length == 0) {
 			alert('이메일을 입력해주세요. 입력해주세요.');
 			form.email.focus();
+
 			return;
 		}
+
 		form.submit();
 		findLoginPwFormSubmitDone = true;
 	}

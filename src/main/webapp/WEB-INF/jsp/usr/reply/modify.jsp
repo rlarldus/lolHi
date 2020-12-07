@@ -10,11 +10,13 @@
 	<div>작성날짜 : ${reply.regDate}</div>
 	<div>수정날짜 : ${reply.updateDate}</div>
 	<div>
-		내용 : <input type="text" maxlength="30" placeholder="내용을 입력해주세요."
+		내용 :
+		<input type="text" maxlength="30" placeholder="내용을 입력해주세요."
 			name="body" value="${reply.body}" />
 	</div>
 	<div>
-		수정 : <input type="submit" value="수정" />
+		수정 :
+		<input type="submit" value="수정" />
 	</div>
 </form>
 
@@ -22,4 +24,4 @@
 	<a href="${param.redirectUrl}">돌아가기</a>
 </div>
 
-<%@ include file="../part/foot.jspf"%> 
+<%@ include file="../part/foot.jspf"%>

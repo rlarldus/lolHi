@@ -10,8 +10,8 @@ public class HomeController {
 	public String showMain_() {
 		return "redirect:/usr/home/main";
 	}
+
 	@RequestMapping("/usr/home/main")
-	
 	public String showMain() {
 		return "/usr/home/main";
 	}
@@ -28,33 +28,15 @@ public class HomeController {
 		return "또봐";
 	}
 
-	// /usr/home/plus?a=10&b=20
 	@RequestMapping("/usr/home/plus")
 	@ResponseBody
 	public int showPlus(int a, int b) {
 		return a + b;
-
 	}
 
-	// /usr/home/minus?a=10&b=20
 	@RequestMapping("/usr/home/minus")
 	@ResponseBody
 	public int showMinus(int a, int b) {
 		return a - b;
-
-	}
-	// /usr/home/multiply?a=10&b=20
-	@RequestMapping("/usr/home/multiply")
-	@ResponseBody
-	public int showMultiply(int a, int b) {
-		return a * b;
-
-	}
-	// /usr/home/division?a=10&b=20
-	@RequestMapping("/usr/home/division")
-	@ResponseBody
-	public int showdivision(int a, int b) {
-		return a / b;
-
 	}
 }

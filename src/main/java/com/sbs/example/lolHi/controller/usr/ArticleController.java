@@ -26,8 +26,7 @@ public class ArticleController {
 	private ArticleService articleService;
 	@Autowired
 	private ReplyService replyService;
-	
-	
+
 	@RequestMapping("/usr/article-{boardCode}/list")
 	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
 			@PathVariable("boardCode") String boardCode) {
@@ -38,9 +37,11 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
+
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		param.put("boardId", board.getId());
+
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
@@ -77,16 +78,16 @@ public class ArticleController {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
-		
-		if ( listUrl == null ) {
+
+		if (listUrl == null) {
 			listUrl = "/usr/article-free/list";
 		}
-		
+
 		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
 		model.addAttribute("listUrl", listUrl);
-		
+
 		return "usr/article/detail";
 	}
 
@@ -112,6 +113,7 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/modify")
 	public String showModify(HttpServletRequest req, Model model, int id, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
+
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
@@ -154,7 +156,6 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 
 		model.addAttribute("board", board);
-	
 
 		return "usr/article/write";
 	}
@@ -169,7 +170,7 @@ public class ArticleController {
 		param.put("memberId", loginedMemberId);
 		int id = articleService.writeArticle(param);
 
-		model.addAttribute("msg", String.format("%d번 글이 생성되였습니다.", id));
+		model.addAttribute("msg", String.format("%d번 글이 생성되었습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		return "common/redirect";
 	}
